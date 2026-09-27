@@ -142,6 +142,64 @@
                 <span>GitHub projektek</span>
             </footer>
         </section>
+        
+        <!-- Safari -->
+<section
+    class="mac-window safari-window"
+    id="safari-window"
+    data-app="safari"
+    aria-label="Safari"
+    style="display: none;"
+>
+    <header class="window-titlebar safari-titlebar">
+        <div class="traffic-lights">
+            <button
+                class="window-button close"
+                aria-label="Bezárás"
+                onclick="closeWindow('safari-window')"
+            ></button>
+
+            <button
+                class="window-button minimize"
+                aria-label="Minimalizálás"
+                onclick="minimizeWindow('safari-window')"
+            ></button>
+
+            <button
+                class="window-button maximize"
+                aria-label="Teljes képernyő"
+                onclick="maximizeWindow('safari-window')"
+            ></button>
+        </div>
+
+        <div class="safari-controls">
+            <button aria-label="Vissza">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button aria-label="Előre">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <button aria-label="Újratöltés">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+            </button>
+        </div>
+
+        <div class="safari-address">
+            <i class="fa-solid fa-lock"></i>
+            <span>google.no</span>
+        </div>
+    </header>
+
+    <div class="safari-content">
+        <iframe
+            src="https://www.google.no/"
+            title="Google Norway"
+            loading="lazy"
+        ></iframe>
+    </div>
+</section>
 
         <!-- Dock -->
         <nav class="dock" aria-label="Alkalmazások">
