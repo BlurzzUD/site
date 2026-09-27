@@ -90,31 +90,28 @@ function openGitHub() {
  * Dock/window system.
  */
 function openApp(app) {
-    if (app === "finder") {
-        const finder = getWindow("finder-window");
+    const windowMap = {
+        finder: "finder-window",
+        safari: "safari-window"
+    };
 
-        if (!finder) return;
+    const windowId = windowMap[app];
 
-        if (finder.style.display === "none") {
-            finder.style.display = "flex";
-        }
-
-        finder.classList.remove("minimized");
-
-        focusWindow(finder);
-        setDockRunning("finder", true);
-
+    if (!windowId) {
+        console.log(`Opening ${app}`);
         return;
     }
 
-    /*
-     * Temporary behavior for apps that don't have their
-     * actual windows yet.
-     *
-     * This keeps the Dock functional while the individual
-     * applications are implemented.
-     */
-    console.log(`Opening ${app}`);
+    const appWindow = getWindow(windowId);
+
+    if (!appWindow) return;
+
+    appWindow.style.display = "flex";
+    appWindow.classList.remove("minimized");
+
+    focusWindow(appWindow);
+
+    setDockRunning(app, true);
 }
 
 function setupDockMagnification() {
