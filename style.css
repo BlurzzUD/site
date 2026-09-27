@@ -23,6 +23,7 @@ body {
 body {
     overflow: hidden;
     color: var(--text);
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -88,7 +89,10 @@ button {
         );
 }
 
-/* Desktop heading */
+
+/* =========================
+   Desktop heading
+========================= */
 
 .desktop-heading {
     position: absolute;
@@ -101,6 +105,7 @@ button {
 
 .desktop-heading h1 {
     margin: 0;
+
     font-size: 30px;
     font-weight: 650;
     letter-spacing: -0.8px;
@@ -108,10 +113,10 @@ button {
 
 .desktop-heading p {
     margin: 5px 0 0;
+
     color: var(--secondary);
     font-size: 14px;
 }
-
 
 
 /* =========================
@@ -187,7 +192,10 @@ button {
     border-radius: 0;
 }
 
-/* Title bar */
+
+/* =========================
+   Title bar
+========================= */
 
 .window-titlebar {
     position: relative;
@@ -291,7 +299,10 @@ button {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* Finder */
+
+/* =========================
+   Finder
+========================= */
 
 .finder-body {
     flex: 1;
@@ -357,7 +368,10 @@ button {
     text-align: center;
 }
 
-/* Finder content */
+
+/* =========================
+   Finder content
+========================= */
 
 .finder-content {
     flex: 1;
@@ -408,11 +422,18 @@ button {
     background: rgba(255, 255, 255, 0.11);
 }
 
-/* Project cards */
+
+/* =========================
+   Project cards
+========================= */
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(190px, 1fr)
+    );
+
     gap: 16px;
 }
 
@@ -459,6 +480,7 @@ button {
     border-radius: 15px;
 
     color: white;
+
     background:
         linear-gradient(
             145deg,
@@ -504,7 +526,10 @@ button {
     transform: none;
 }
 
-/* Window status bar */
+
+/* =========================
+   Window status bar
+========================= */
 
 .window-statusbar {
     display: flex;
@@ -522,7 +547,10 @@ button {
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* Dock */
+
+/* =========================
+   Dock
+========================= */
 
 .dock {
     position: fixed;
@@ -536,6 +564,7 @@ button {
     gap: 6px;
 
     max-width: calc(100vw - 24px);
+
     padding: 9px 11px;
 
     border: 1px solid rgba(255, 255, 255, 0.17);
@@ -591,24 +620,31 @@ button {
     border-radius: 15px;
 
     filter:
-        drop-shadow(0 7px 9px rgba(0, 0, 0, 0.32));
+        drop-shadow(
+            0 7px 9px rgba(0, 0, 0, 0.32)
+        );
 
     user-select: none;
     -webkit-user-drag: none;
 }
 
 .dock-item:hover {
-    transform: translateY(-9px) scale(1.28);
+    transform:
+        translateY(-9px)
+        scale(1.28);
 }
 
 .dock-item.near {
-    transform: translateY(-4px) scale(1.12);
+    transform:
+        translateY(-4px)
+        scale(1.12);
 }
 
 .dock-item.running::after {
     content: "";
 
     position: absolute;
+
     left: 50%;
     bottom: -5px;
 
@@ -617,13 +653,16 @@ button {
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.85);
+    background:
+        rgba(255, 255, 255, 0.85);
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
 .dock-tooltip {
     position: absolute;
+
     left: 50%;
     bottom: calc(100% + 12px);
 
@@ -635,7 +674,8 @@ button {
     color: white;
     background: rgba(25, 25, 28, 0.82);
 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
 
     font-size: 12px;
     white-space: nowrap;
@@ -643,7 +683,8 @@ button {
     opacity: 0;
     pointer-events: none;
 
-    transform: translate(-50%, 5px);
+    transform:
+        translate(-50%, 5px);
 
     transition:
         opacity 0.14s ease,
@@ -652,13 +693,19 @@ button {
 
 .dock-item:hover .dock-tooltip {
     opacity: 1;
-    transform: translate(-50%, 0);
+
+    transform:
+        translate(-50%, 0);
 }
 
-/* Footer */
+
+/* =========================
+   Footer
+========================= */
 
 .site-footer {
     position: fixed;
+
     right: 24px;
     bottom: 25px;
 
@@ -675,8 +722,10 @@ button {
 
 .site-footer a {
     color: rgba(255, 255, 255, 0.82);
+
     font-weight: 600;
     text-decoration: none;
+
     pointer-events: auto;
 }
 
@@ -684,78 +733,17 @@ button {
     color: white;
 }
 
-/* Mobile */
 
-@media (max-width: 850px) {
-    .desktop-heading {
-        top: 18px;
-        left: 20px;
-    }
-
-    .desktop-heading h1 {
-        font-size: 24px;
-    }
-
-    .mac-window {
-        width: calc(100vw - 24px);
-        height: calc(100vh - 125px);
-    }
-
-    .finder-sidebar {
-        display: none;
-    }
-
-    .finder-content {
-        padding: 20px;
-    }
-
-    .dock {
-        gap: 3px;
-        padding: 7px;
-
-        overflow-x: auto;
-        scrollbar-width: none;
-    }
-
-    .dock::-webkit-scrollbar {
-        display: none;
-    }
-
-    .dock-item {
-        width: 51px;
-        height: 51px;
-        flex-basis: 51px;
-    }
-
-    .site-footer {
-        display: none;
-    }
-}
-
-@media (max-width: 520px) {
-    .window-actions {
-        display: none;
-    }
-
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .project-card {
-        min-height: 145px;
-    }
-}
 /* =========================
    Safari
 ========================= */
 
 .safari-window {
-    width: min(1200px, calc(100vw - 80px));
+    width: min(
+        1200px,
+        calc(100vw - 80px)
+    );
 
-    /*
-     * Leave enough room for the Dock so the bottom
-     * of the window never disappears behind it.
-     */
     height: min(
         720px,
         calc(100vh - 210px)
@@ -800,37 +788,54 @@ button {
 
 .safari-address {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 
-    width: min(420px, 45%);
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: min(
+        420px,
+        45%
+    );
 
     height: 30px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 7px;
 
     padding: 0 12px;
 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
     border-radius: 9px;
 
-    color: rgba(255, 255, 255, 0.7);
-    background: rgba(0, 0, 0, 0.16);
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    background:
+        rgba(0, 0, 0, 0.16);
 
     font-size: 12px;
 }
 
 .safari-address i {
     font-size: 10px;
-    color: rgba(255, 255, 255, 0.45);
+
+    color:
+        rgba(255, 255, 255, 0.45);
 }
 
 .safari-content {
     flex: 1;
+
     min-height: 0;
+
     background: white;
 }
 
@@ -841,92 +846,110 @@ button {
     display: block;
 
     border: 0;
+
     background: white;
 }
 
-/* Keep windows above the Dock but inside the usable desktop area */
 
-
-
-/* Mobile */
-
-@media (max-width: 850px) {
-    .safari-window {
-        width: calc(100vw - 24px);
-        height: calc(100vh - 145px);
-    }
-
-    .safari-controls {
-        left: 125px;
-    }
-
-    .safari-address {
-        width: 35%;
-    }
-}
-
-/* =========================================================
-   MESSAGES — COMPLETE UI
-========================================================= */
+/* =========================
+   Messages
+========================= */
 
 .messages-window {
     position: absolute;
-    width: min(1050px, calc(100vw - 80px));
-    height: min(680px, calc(100vh - 190px));
+
+    width:
+        min(
+            1050px,
+            calc(100vw - 80px)
+        );
+
+    height:
+        min(
+            680px,
+            calc(100vh - 190px)
+        );
+
     min-width: 0;
     min-height: 0;
+
     display: none;
+
     flex-direction: column;
+
     overflow: hidden;
 }
 
 .messages-titlebar {
     position: relative;
-    flex: 0 0 48px;
+
+    flex:
+        0 0 48px;
+
     width: 100%;
+
     min-height: 48px;
     height: 48px;
+
     display: flex;
     align-items: center;
 }
 
 .messages-titlebar .window-title {
     position: absolute;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     display: flex;
     align-items: center;
+
     gap: 8px;
+
     white-space: nowrap;
 }
 
 .messages-body {
     position: relative;
+
     display: flex;
+
     flex: 1 1 auto;
+
     width: 100%;
+
     min-width: 0;
     min-height: 0;
+
     overflow: hidden;
 }
 
 
-/* =========================================================
-   SIDEBAR
-========================================================= */
+/* Messages sidebar */
 
 .messages-sidebar {
     position: relative;
+
     width: 300px;
     min-width: 300px;
+
     height: 100%;
-    flex: 0 0 300px;
+
+    flex:
+        0 0 300px;
+
     box-sizing: border-box;
+
     padding: 14px 10px;
+
     overflow-y: auto;
     overflow-x: hidden;
 
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
     background:
         linear-gradient(
@@ -936,29 +959,34 @@ button {
         );
 }
 
-
-/* Sidebar header */
-
 .messages-sidebar-header {
     width: 100%;
     height: 38px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     box-sizing: border-box;
-    padding: 0 8px 8px;
+
+    padding:
+        0 8px 8px;
+
     margin-bottom: 6px;
 }
 
 .messages-sidebar-header strong {
     font-size: 17px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.95);
+
+    color:
+        rgba(255, 255, 255, 0.95);
 }
 
 .messages-sidebar-header button {
     width: 30px;
     height: 30px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -966,23 +994,24 @@ button {
     border: 0;
     border-radius: 8px;
 
-    color: rgba(255, 255, 255, 0.8);
+    color:
+        rgba(255, 255, 255, 0.8);
+
     background: transparent;
 
     cursor: pointer;
 }
 
 .messages-sidebar-header button:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background:
+        rgba(255, 255, 255, 0.1);
 }
-
-
-/* Conversation */
 
 .message-conversation {
     position: relative;
 
     width: 100%;
+
     min-height: 64px;
 
     display: flex;
@@ -1009,15 +1038,14 @@ button {
 }
 
 .message-conversation:hover {
-    background: rgba(255, 255, 255, 0.07);
+    background:
+        rgba(255, 255, 255, 0.07);
 }
 
 .message-conversation.active {
-    background: rgba(255, 255, 255, 0.12);
+    background:
+        rgba(255, 255, 255, 0.12);
 }
-
-
-/* Avatar */
 
 .message-avatar {
     width: 42px;
@@ -1057,11 +1085,9 @@ button {
         );
 }
 
-
-/* Preview */
-
 .message-preview {
     min-width: 0;
+
     flex: 1;
 
     display: flex;
@@ -1084,7 +1110,8 @@ button {
     font-size: 14px;
     font-weight: 600;
 
-    color: rgba(255, 255, 255, 0.95);
+    color:
+        rgba(255, 255, 255, 0.95);
 }
 
 .message-preview span {
@@ -1097,13 +1124,12 @@ button {
 
     font-size: 12px;
 
-    color: rgba(255, 255, 255, 0.45);
+    color:
+        rgba(255, 255, 255, 0.45);
 }
 
 
-/* =========================================================
-   CHAT
-========================================================= */
+/* Messages chat */
 
 .messages-chat {
     position: relative;
@@ -1111,7 +1137,9 @@ button {
     flex: 1 1 auto;
 
     width: 0;
+
     min-width: 0;
+
     height: 100%;
 
     display: flex;
@@ -1127,13 +1155,11 @@ button {
         );
 }
 
-
-/* Chat header */
-
 .messages-chat-header {
     position: relative;
 
     width: 100%;
+
     height: 62px;
     min-height: 62px;
 
@@ -1144,11 +1170,15 @@ button {
 
     gap: 10px;
 
-    padding: 8px 18px;
+    padding:
+        8px 18px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
-    background: rgba(25, 26, 30, 0.65);
+    background:
+        rgba(25, 26, 30, 0.65);
 
     flex-shrink: 0;
 }
@@ -1177,7 +1207,8 @@ button {
     font-size: 14px;
     font-weight: 600;
 
-    color: rgba(255, 255, 255, 0.95);
+    color:
+        rgba(255, 255, 255, 0.95);
 }
 
 .messages-chat-header span {
@@ -1188,18 +1219,15 @@ button {
 
     font-size: 11px;
 
-    color: rgba(255, 255, 255, 0.4);
+    color:
+        rgba(255, 255, 255, 0.4);
 }
-
-
-/* =========================================================
-   MESSAGE CONTENT
-========================================================= */
 
 .messages-content {
     flex: 1 1 auto;
 
     width: 100%;
+
     min-width: 0;
     min-height: 0;
 
@@ -1217,15 +1245,14 @@ button {
 .message-date {
     flex: 0 0 auto;
 
-    margin: 0 auto 20px;
+    margin:
+        0 auto 20px;
 
     font-size: 11px;
 
-    color: rgba(255, 255, 255, 0.35);
+    color:
+        rgba(255, 255, 255, 0.35);
 }
-
-
-/* Message rows */
 
 .message-row {
     width: 100%;
@@ -1245,15 +1272,14 @@ button {
     justify-content: flex-end;
 }
 
-
-/* Bubbles */
-
 .message-bubble {
     box-sizing: border-box;
 
-    max-width: min(70%, 460px);
+    max-width:
+        min(70%, 460px);
 
-    padding: 9px 13px;
+    padding:
+        9px 13px;
 
     border-radius: 17px;
 
@@ -1263,7 +1289,8 @@ button {
     overflow-wrap: anywhere;
 }
 
-.message-row.received .message-bubble {
+.message-row.received
+.message-bubble {
     color: white;
 
     background: #303136;
@@ -1271,7 +1298,8 @@ button {
     border-bottom-left-radius: 5px;
 }
 
-.message-row.sent .message-bubble {
+.message-row.sent
+.message-bubble {
     color: white;
 
     background: #0a84ff;
@@ -1286,23 +1314,21 @@ button {
 
     font-size: 11px;
 
-    color: rgba(255, 255, 255, 0.7);
+    color:
+        rgba(255, 255, 255, 0.7);
 }
 
 .message-bubble p {
     margin: 0;
 }
 
-
-/* =========================================================
-   INPUT
-========================================================= */
-
 .messages-input-area {
     width: 100%;
+
     min-height: 60px;
 
-    flex: 0 0 60px;
+    flex:
+        0 0 60px;
 
     box-sizing: border-box;
 
@@ -1311,11 +1337,15 @@ button {
 
     gap: 8px;
 
-    padding: 10px 14px;
+    padding:
+        10px 14px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
-    background: rgba(20, 21, 25, 0.88);
+    background:
+        rgba(20, 21, 25, 0.88);
 }
 
 .messages-input-area button {
@@ -1333,15 +1363,18 @@ button {
     border: 0;
     border-radius: 50%;
 
-    color: rgba(255, 255, 255, 0.75);
+    color:
+        rgba(255, 255, 255, 0.75);
 
-    background: rgba(255, 255, 255, 0.08);
+    background:
+        rgba(255, 255, 255, 0.08);
 
     cursor: pointer;
 }
 
 .messages-input-area button:hover {
-    background: rgba(255, 255, 255, 0.14);
+    background:
+        rgba(255, 255, 255, 0.14);
 }
 
 .messages-input-area input {
@@ -1354,9 +1387,13 @@ button {
 
     box-sizing: border-box;
 
-    padding: 0 14px;
+    padding:
+        0 14px;
 
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
     border-radius: 18px;
 
     outline: none;
@@ -1366,45 +1403,484 @@ button {
 
     color: white;
 
-    background: rgba(255, 255, 255, 0.06);
+    background:
+        rgba(255, 255, 255, 0.06);
 }
 
 .messages-input-area input:focus {
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color:
+        rgba(255, 255, 255, 0.22);
 }
 
 .messages-input-area input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color:
+        rgba(255, 255, 255, 0.35);
 }
 
-.messages-input-area .send-message {
+.messages-input-area
+.send-message {
     color: white;
 
     background: #0a84ff;
 }
 
-.messages-input-area .send-message:hover {
+.messages-input-area
+.send-message:hover {
     background: #147de0;
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* =========================
+   Mail
+========================= */
+
+.mail-window {
+    width:
+        min(
+            980px,
+            calc(100vw - 80px)
+        );
+
+    height:
+        min(
+            650px,
+            calc(100vh - 190px)
+        );
+
+    min-width: 0;
+    min-height: 0;
+}
+
+.mail-titlebar {
+    flex:
+        0 0 52px;
+}
+
+.mail-body {
+    flex: 1 1 auto;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+.mail-sidebar {
+    width: 220px;
+    min-width: 220px;
+
+    flex:
+        0 0 220px;
+
+    padding:
+        16px 10px;
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(0, 0, 0, 0.14);
+}
+
+.mail-sidebar-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        0 8px 12px;
+
+    color:
+        rgba(255, 255, 255, 0.9);
+}
+
+.mail-sidebar-title strong {
+    font-size: 16px;
+}
+
+.mail-compose-small {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 8px;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.mail-compose-small:hover {
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+.mail-folder {
+    width: 100%;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        0 10px;
+
+    margin: 2px 0;
+
+    border: 0;
+    border-radius: 8px;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.mail-folder:hover {
+    background:
+        rgba(255, 255, 255, 0.06);
+}
+
+.mail-folder.active {
+    color: white;
+
+    background:
+        rgba(10, 132, 255, 0.72);
+}
+
+.mail-folder i {
+    width: 18px;
+
+    text-align: center;
+}
+
+.mail-folder span {
+    flex: 1;
+}
+
+.mail-folder strong {
+    font-size: 11px;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+}
+
+.mail-main {
+    flex: 1 1 auto;
+
+    width: 0;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.mail-toolbar {
+    min-height: 68px;
+
+    flex:
+        0 0 68px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding:
+        12px 20px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(25, 26, 30, 0.5);
+}
+
+.mail-toolbar > div {
+    min-width: 0;
+}
+
+.mail-toolbar strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+.mail-toolbar span:not(.mail-status) {
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size: 11px;
+}
+
+.mail-status {
+    flex:
+        0 0 auto;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+.mail-compose {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding:
+        18px 20px 14px;
+
+    overflow: hidden;
+}
+
+.mail-field {
+    display: grid;
+
+    grid-template-columns:
+        76px
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    min-height: 48px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+.mail-field > span {
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size: 12px;
+}
+
+.mail-field input,
+.mail-field textarea {
+    width: 100%;
+    min-width: 0;
+
+    border: 0;
+    outline: none;
+
+    color: white;
+
+    background: transparent;
+
+    font: inherit;
+}
+
+.mail-field input {
+    height: 40px;
+}
+
+.mail-field input::placeholder,
+.mail-field textarea::placeholder {
+    color:
+        rgba(255, 255, 255, 0.28);
+}
+
+.mail-body-field {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    align-items: stretch;
+
+    padding-top: 12px;
+}
+
+.mail-body-field > span {
+    padding-top: 7px;
+}
+
+.mail-body-field textarea {
+    height: 100%;
+
+    min-height: 160px;
+
+    resize: none;
+
+    line-height: 1.5;
+}
+
+.mail-compose-footer {
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding-top: 12px;
+}
+
+.mail-hint {
+    color:
+        rgba(255, 255, 255, 0.34);
+
+    font-size: 11px;
+}
+
+.mail-send-button {
+    flex:
+        0 0 auto;
+
+    height: 36px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        0 15px;
+
+    border: 0;
+    border-radius: 9px;
+
+    color: white;
+
+    background: #0a84ff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.mail-send-button:hover {
+    background: #147de0;
+}
+
+
+/* =========================
+   Mobile
+========================= */
 
 @media (max-width: 850px) {
 
-    .messages-window {
-        width: calc(100vw - 24px);
-        height: calc(100vh - 145px);
+    .desktop-heading {
+        top: 18px;
+        left: 20px;
+    }
 
-        min-width: 0;
-        min-height: 0;
+    .desktop-heading h1 {
+        font-size: 24px;
+    }
+
+    .mac-window {
+        width:
+            calc(100vw - 24px);
+
+        height:
+            calc(100vh - 125px);
+    }
+
+    .finder-sidebar {
+        display: none;
+    }
+
+    .finder-content {
+        padding: 20px;
+    }
+
+    .dock {
+        gap: 3px;
+
+        padding: 7px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .dock::-webkit-scrollbar {
+        display: none;
+    }
+
+    .dock-item {
+        width: 51px;
+        height: 51px;
+
+        flex-basis: 51px;
+    }
+
+    .site-footer {
+        display: none;
+    }
+
+
+    /* Safari */
+
+    .safari-window {
+        width:
+            calc(100vw - 24px);
+
+        height:
+            calc(100vh - 145px);
+    }
+
+    .safari-controls {
+        left: 125px;
+    }
+
+    .safari-address {
+        width: 35%;
+    }
+
+
+    /* Messages */
+
+    .messages-window {
+        width:
+            calc(100vw - 24px);
+
+        height:
+            calc(100vh - 145px);
     }
 
     .messages-sidebar {
         width: 230px;
         min-width: 230px;
+
         flex-basis: 230px;
     }
 
@@ -1416,6 +1892,34 @@ button {
         max-width: 78%;
     }
 
+
+    /* Mail */
+
+    .mail-window {
+        width:
+            calc(100vw - 24px);
+
+        height:
+            calc(100vh - 145px);
+    }
+
+    .mail-sidebar {
+        display: none;
+    }
+
+    .mail-toolbar,
+    .mail-compose {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .mail-compose-footer {
+        align-items: flex-end;
+    }
+
+    .mail-hint {
+        max-width: 55%;
+    }
 }
 
 
@@ -1430,7 +1934,8 @@ button {
     }
 
     .messages-content {
-        padding: 16px 12px;
+        padding:
+            16px 12px;
     }
 
     .message-bubble {
@@ -1446,5 +1951,34 @@ button {
         padding-left: 9px;
         padding-right: 9px;
     }
+}
 
+
+@media (max-width: 520px) {
+
+    .window-actions {
+        display: none;
+    }
+
+    .project-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .project-card {
+        min-height: 145px;
+    }
+
+    .mail-compose-footer {
+        gap: 8px;
+    }
+
+    .mail-hint {
+        font-size: 10px;
+    }
+
+    .mail-send-button {
+        padding:
+            0 12px;
+    }
 }
