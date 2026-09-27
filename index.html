@@ -145,6 +145,7 @@
 
                     <div>
                         <h2>Projektek</h2>
+
                         <span>
                             Iskolai és személyes fejlesztések
                         </span>
@@ -206,7 +207,6 @@
         </footer>
 
     </section>
-
 
 
     <!-- =========================
@@ -292,7 +292,6 @@
         </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -544,6 +543,205 @@
 
     </section>
 
+
+    <!-- =========================
+         Mail
+    ========================== -->
+
+    <section
+        class="mac-window mail-window"
+        id="mail-window"
+        data-app="mail"
+        aria-label="Mail"
+        style="display: none;"
+    >
+
+        <header class="window-titlebar mail-titlebar">
+
+            <div class="traffic-lights">
+
+                <button
+                    class="window-button close"
+                    aria-label="Bezárás"
+                    onclick="closeWindow('mail-window')"
+                ></button>
+
+                <button
+                    class="window-button minimize"
+                    aria-label="Minimalizálás"
+                    onclick="minimizeWindow('mail-window')"
+                ></button>
+
+                <button
+                    class="window-button maximize"
+                    aria-label="Teljes képernyő"
+                    onclick="maximizeWindow('mail-window')"
+                ></button>
+
+            </div>
+
+            <div class="window-title">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Mail</span>
+            </div>
+
+        </header>
+
+
+        <div class="mail-body">
+
+            <aside class="mail-sidebar">
+
+                <div class="mail-sidebar-title">
+
+                    <strong>Mailboxes</strong>
+
+                    <button
+                        type="button"
+                        class="mail-compose-small"
+                        aria-label="Új üzenet"
+                        title="Új üzenet"
+                        onclick="focusMailCompose()"
+                    >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="mail-folder active"
+                    type="button"
+                >
+                    <i class="fa-solid fa-inbox"></i>
+                    <span>Inbox</span>
+                    <strong>1</strong>
+                </button>
+
+
+                <button
+                    class="mail-folder"
+                    type="button"
+                >
+                    <i class="fa-regular fa-paper-plane"></i>
+                    <span>Sent</span>
+                </button>
+
+
+                <button
+                    class="mail-folder"
+                    type="button"
+                >
+                    <i class="fa-regular fa-file"></i>
+                    <span>Drafts</span>
+                </button>
+
+            </aside>
+
+
+            <section class="mail-main">
+
+                <div class="mail-toolbar">
+
+                    <div>
+
+                        <strong>
+                            New Message
+                        </strong>
+
+                        <span>
+                            Írj egy üzenetet kpiti359@gmail.com címre.
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="mail-status"
+                        id="mail-status"
+                    >
+                        Kész
+                    </span>
+
+                </div>
+
+
+                <form
+                    class="mail-compose"
+                    id="mail-compose-form"
+                    onsubmit="sendMail(event)"
+                >
+
+                    <label class="mail-field">
+
+                        <span>
+                            Címzett
+                        </span>
+
+                        <input
+                            id="mail-to"
+                            type="email"
+                            value="kpiti359@gmail.com"
+                            readonly
+                            autocomplete="email"
+                        >
+
+                    </label>
+
+
+                    <label class="mail-field">
+
+                        <span>
+                            Tárgy
+                        </span>
+
+                        <input
+                            id="mail-subject"
+                            type="text"
+                            placeholder="Tárgy"
+                            autocomplete="off"
+                        >
+
+                    </label>
+
+
+                    <label class="mail-field mail-body-field">
+
+                        <span>
+                            Üzenet
+                        </span>
+
+                        <textarea
+                            id="mail-body-text"
+                            placeholder="Írd ide az üzeneted…"
+                            spellcheck="true"
+                        ></textarea>
+
+                    </label>
+
+
+                    <div class="mail-compose-footer">
+
+                        <span class="mail-hint">
+                            A Küldés a gépeden beállított levelezőprogramot nyitja meg.
+                        </span>
+
+                        <button
+                            class="mail-send-button"
+                            type="submit"
+                        >
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Küldés</span>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </section>
 
 
     <!-- =========================
@@ -797,7 +995,6 @@
     </nav>
 
 
-
     <!-- =========================
          Footer
     ========================== -->
@@ -820,7 +1017,7 @@
 </main>
 
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 
 </body>
 </html>
