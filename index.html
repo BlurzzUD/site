@@ -2,11 +2,23 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#111318">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111318"
+    >
+
     <title>Blurzzd — Projektek</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -14,288 +26,589 @@
 </head>
 
 <body>
-    <main class="desktop">
 
-        <div class="desktop-heading">
-            <h1>Blurzzd</h1>
-            <p>Projektek és személyes fejlesztések</p>
-        </div>
+<main class="desktop">
 
-        <!-- Finder -->
-        <section
-            class="mac-window finder-window"
-            id="finder-window"
-            data-app="finder"
-            aria-label="Finder"
-        >
-            <header class="window-titlebar">
-                <div class="traffic-lights">
-                    <button
-                        class="window-button close"
-                        aria-label="Bezárás"
-                        onclick="closeWindow('finder-window')"
-                    ></button>
+    <!-- =========================
+         Desktop heading
+    ========================== -->
 
-                    <button
-                        class="window-button minimize"
-                        aria-label="Minimalizálás"
-                        onclick="minimizeWindow('finder-window')"
-                    ></button>
+    <div class="desktop-heading">
+        <h1>Blurzzd</h1>
+        <p>Projektek és személyes fejlesztések</p>
+    </div>
 
-                    <button
-                        class="window-button maximize"
-                        aria-label="Teljes képernyő"
-                        onclick="maximizeWindow('finder-window')"
-                    ></button>
-                </div>
 
-                <div class="window-title">
-                    <i class="fa-solid fa-folder"></i>
-                    <span>Projektek</span>
-                </div>
+    <!-- =========================
+         Finder
+    ========================== -->
 
-                <div class="window-actions">
-                    <button aria-label="Vissza">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button aria-label="Előre">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-            </header>
+    <section
+        class="mac-window finder-window"
+        id="finder-window"
+        data-app="finder"
+        aria-label="Finder"
+    >
 
-            <div class="finder-body">
-                <aside class="finder-sidebar">
-                    <div class="sidebar-section">
-                        <span class="sidebar-label">Kedvencek</span>
+        <header class="window-titlebar">
 
-                        <button class="sidebar-item active">
-                            <i class="fa-solid fa-house"></i>
-                            <span>Projektek</span>
-                        </button>
+            <div class="traffic-lights">
 
-                        <button class="sidebar-item">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Legutóbbiak</span>
-                        </button>
-                    </div>
+                <button
+                    class="window-button close"
+                    aria-label="Bezárás"
+                    onclick="closeWindow('finder-window')"
+                ></button>
 
-                    <div class="sidebar-section">
-                        <span class="sidebar-label">Helyek</span>
+                <button
+                    class="window-button minimize"
+                    aria-label="Minimalizálás"
+                    onclick="minimizeWindow('finder-window')"
+                ></button>
 
-                        <button class="sidebar-item">
-                            <i class="fa-solid fa-desktop"></i>
-                            <span>Asztal</span>
-                        </button>
+                <button
+                    class="window-button maximize"
+                    aria-label="Teljes képernyő"
+                    onclick="maximizeWindow('finder-window')"
+                ></button>
 
-                        <button class="sidebar-item">
-                            <i class="fa-solid fa-code"></i>
-                            <span>Fejlesztés</span>
-                        </button>
-                    </div>
-                </aside>
-
-                <div class="finder-content">
-                    <div class="finder-toolbar">
-                        <div>
-                            <h2>Projektek</h2>
-                            <span>Iskolai és személyes projektek</span>
-                        </div>
-
-                        <button
-                            class="toolbar-icon"
-                            aria-label="Nézet"
-                            title="Nézet"
-                        >
-                            <i class="fa-solid fa-grip"></i>
-                        </button>
-                    </div>
-
-                    <div class="project-grid">
-                        <button class="project-card" onclick="openGitHub()">
-                            <div class="project-icon">
-                                <i class="fa-brands fa-github"></i>
-                            </div>
-
-                            <div class="project-info">
-                                <strong>site</strong>
-                                <span>BlurzzUD/site</span>
-                            </div>
-                        </button>
-
-                        <div class="project-card empty-project">
-                            <div class="project-icon muted">
-                                <i class="fa-solid fa-folder-open"></i>
-                            </div>
-
-                            <div class="project-info">
-                                <strong>Hamarosan</strong>
-                                <span>Új projekt</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <footer class="window-statusbar">
-                <span>2 elem</span>
-                <span>GitHub projektek</span>
-            </footer>
-        </section>
-        
-        <!-- Safari -->
-<section
-    class="mac-window safari-window"
-    id="safari-window"
-    data-app="safari"
-    aria-label="Safari"
-    style="display: none;"
->
-    <header class="window-titlebar safari-titlebar">
-        <div class="traffic-lights">
-            <button
-                class="window-button close"
-                aria-label="Bezárás"
-                onclick="closeWindow('safari-window')"
-            ></button>
+            <div class="window-title">
+                <i class="fa-solid fa-folder"></i>
+                <span>Projektek</span>
+            </div>
 
-            <button
-                class="window-button minimize"
-                aria-label="Minimalizálás"
-                onclick="minimizeWindow('safari-window')"
-            ></button>
+            <div class="window-actions">
 
-            <button
-                class="window-button maximize"
-                aria-label="Teljes képernyő"
-                onclick="maximizeWindow('safari-window')"
-            ></button>
+                <button aria-label="Vissza">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button aria-label="Előre">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="finder-body">
+
+            <aside class="finder-sidebar">
+
+                <div class="sidebar-section">
+
+                    <span class="sidebar-label">
+                        Kedvencek
+                    </span>
+
+                    <button class="sidebar-item active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Projektek</span>
+                    </button>
+
+                    <button class="sidebar-item">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Legutóbbiak</span>
+                    </button>
+
+                </div>
+
+
+                <div class="sidebar-section">
+
+                    <span class="sidebar-label">
+                        Helyek
+                    </span>
+
+                    <button class="sidebar-item">
+                        <i class="fa-solid fa-desktop"></i>
+                        <span>Asztal</span>
+                    </button>
+
+                    <button class="sidebar-item">
+                        <i class="fa-solid fa-code"></i>
+                        <span>Fejlesztés</span>
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+            <div class="finder-content">
+
+                <div class="finder-toolbar">
+
+                    <div>
+                        <h2>Projektek</h2>
+                        <span>
+                            Iskolai és személyes projektek
+                        </span>
+                    </div>
+
+                    <button
+                        class="toolbar-icon"
+                        aria-label="Nézet"
+                        title="Nézet"
+                    >
+                        <i class="fa-solid fa-grip"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="project-grid">
+
+                    <button
+                        class="project-card"
+                        onclick="openGitHub()"
+                    >
+
+                        <div class="project-icon">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+
+                        <div class="project-info">
+                            <strong>site</strong>
+                            <span>BlurzzUD/site</span>
+                        </div>
+
+                    </button>
+
+
+                    <div class="project-card empty-project">
+
+                        <div class="project-icon muted">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+
+                        <div class="project-info">
+                            <strong>Hamarosan</strong>
+                            <span>Új projekt</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="safari-controls">
-            <button aria-label="Vissza">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
 
-            <button aria-label="Előre">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-
-            <button aria-label="Újratöltés">
-                <i class="fa-solid fa-arrow-rotate-right"></i>
-            </button>
-        </div>
-
-        <div class="safari-address">
-            <i class="fa-solid fa-lock"></i>
-            <span>google.no</span>
-        </div>
-    </header>
-
-    <div class="safari-content">
-        <iframe
-            src="https://www.google.no/"
-            title="Google Norway"
-            loading="lazy"
-        ></iframe>
-    </div>
-</section>
-
-        <!-- Dock -->
-        <nav class="dock" aria-label="Alkalmazások">
-
-            <button class="dock-item" data-app="finder" title="Finder">
-                <img src="img/dock/finder.webp" alt="Finder">
-                <span class="dock-tooltip">Finder</span>
-            </button>
-
-            <button class="dock-item" data-app="launchpad" title="Launchpad">
-                <img src="img/dock/launchpad.webp" alt="Launchpad">
-                <span class="dock-tooltip">Launchpad</span>
-            </button>
-
-            <button class="dock-item" data-app="safari" title="Safari">
-                <img src="img/dock/safari.webp" alt="Safari">
-                <span class="dock-tooltip">Safari</span>
-            </button>
-
-            <button class="dock-item" data-app="messages" title="Messages">
-                <img src="img/dock/message.webp" alt="Messages">
-                <span class="dock-tooltip">Messages</span>
-            </button>
-
-            <button class="dock-item" data-app="mail" title="Mail">
-                <img src="img/dock/mail.webp" alt="Mail">
-                <span class="dock-tooltip">Mail</span>
-            </button>
-
-            <button class="dock-item" data-app="maps" title="Maps">
-                <img src="img/dock/maps.webp" alt="Maps">
-                <span class="dock-tooltip">Maps</span>
-            </button>
-
-            <button class="dock-item" data-app="photos" title="Photos">
-                <img src="img/dock/photos.webp" alt="Photos">
-                <span class="dock-tooltip">Photos</span>
-            </button>
-
-            <button class="dock-item" data-app="facetime" title="FaceTime">
-                <img src="img/dock/facetime.webp" alt="FaceTime">
-                <span class="dock-tooltip">FaceTime</span>
-            </button>
-
-            <button class="dock-item" data-app="calendar" title="Calendar">
-                <img src="img/dock/calendar.webp" alt="Calendar">
-                <span class="dock-tooltip">Calendar</span>
-            </button>
-
-            <button class="dock-item" data-app="contacts" title="Contacts">
-                <img src="img/dock/contacts.webp" alt="Contacts">
-                <span class="dock-tooltip">Contacts</span>
-            </button>
-
-            <button class="dock-item" data-app="reminders" title="Reminders">
-                <img src="img/dock/reminders.webp" alt="Reminders">
-                <span class="dock-tooltip">Reminders</span>
-            </button>
-
-            <button class="dock-item" data-app="notes" title="Notes">
-                <img src="img/dock/notes.webp" alt="Notes">
-                <span class="dock-tooltip">Notes</span>
-            </button>
-
-            <button class="dock-item" data-app="freeform" title="Freeform">
-                <img src="img/dock/freeform.webp" alt="Freeform">
-                <span class="dock-tooltip">Freeform</span>
-            </button>
-
-            <button class="dock-item" data-app="tv" title="TV">
-                <img src="img/dock/tv.webp" alt="TV">
-                <span class="dock-tooltip">TV</span>
-            </button>
-
-            <button class="dock-item" data-app="music" title="Music">
-                <img src="img/dock/music.webp" alt="Music">
-                <span class="dock-tooltip">Music</span>
-            </button>
-
-        </nav>
-
-        <footer class="site-footer">
-            <span>Made by</span>
-
-            <a
-                href="https://github.com/blurzzd"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <i class="fa-brands fa-github"></i>
-                Blurzzd
-            </a>
+        <footer class="window-statusbar">
+            <span>2 elem</span>
+            <span>GitHub projektek</span>
         </footer>
 
-    </main>
+    </section>
 
-    <script src="script.js"></script>
+
+
+    <!-- =========================
+         Safari
+    ========================== -->
+
+    <section
+        class="mac-window safari-window"
+        id="safari-window"
+        data-app="safari"
+        aria-label="Safari"
+        style="display: none;"
+    >
+
+        <header class="window-titlebar safari-titlebar">
+
+            <div class="traffic-lights">
+
+                <button
+                    class="window-button close"
+                    aria-label="Bezárás"
+                    onclick="closeWindow('safari-window')"
+                ></button>
+
+                <button
+                    class="window-button minimize"
+                    aria-label="Minimalizálás"
+                    onclick="minimizeWindow('safari-window')"
+                ></button>
+
+                <button
+                    class="window-button maximize"
+                    aria-label="Teljes képernyő"
+                    onclick="maximizeWindow('safari-window')"
+                ></button>
+
+            </div>
+
+
+            <div class="safari-controls">
+
+                <button
+                    aria-label="Vissza"
+                    onclick="history.back()"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button
+                    aria-label="Előre"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <button
+                    aria-label="Újratöltés"
+                    onclick="reloadSafari()"
+                >
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+
+            </div>
+
+
+            <div class="safari-address">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <span>
+                    google.no
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <div class="safari-content">
+
+            <iframe
+                id="safari-frame"
+                src="https://www.google.no/"
+                title="Google Norway"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+            ></iframe>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Dock
+    ========================== -->
+
+    <nav
+        class="dock"
+        aria-label="Alkalmazások"
+    >
+
+        <!-- Finder -->
+
+        <button
+            class="dock-item"
+            data-app="finder"
+            title="Finder"
+        >
+            <img
+                src="img/dock/finder.webp"
+                alt="Finder"
+            >
+
+            <span class="dock-tooltip">
+                Finder
+            </span>
+        </button>
+
+
+        <!-- Launchpad -->
+
+        <button
+            class="dock-item"
+            data-app="launchpad"
+            title="Launchpad"
+        >
+            <img
+                src="img/dock/launchpad.webp"
+                alt="Launchpad"
+            >
+
+            <span class="dock-tooltip">
+                Launchpad
+            </span>
+        </button>
+
+
+        <!-- Safari -->
+
+        <button
+            class="dock-item"
+            data-app="safari"
+            title="Safari"
+            onclick="openApp('safari')"
+        >
+            <img
+                src="img/dock/safari.webp"
+                alt="Safari"
+            >
+
+            <span class="dock-tooltip">
+                Safari
+            </span>
+        </button>
+
+
+        <!-- Messages -->
+
+        <button
+            class="dock-item"
+            data-app="messages"
+            title="Messages"
+        >
+            <img
+                src="img/dock/message.webp"
+                alt="Messages"
+            >
+
+            <span class="dock-tooltip">
+                Messages
+            </span>
+        </button>
+
+
+        <!-- Mail -->
+
+        <button
+            class="dock-item"
+            data-app="mail"
+            title="Mail"
+        >
+            <img
+                src="img/dock/mail.webp"
+                alt="Mail"
+            >
+
+            <span class="dock-tooltip">
+                Mail
+            </span>
+        </button>
+
+
+        <!-- Maps -->
+
+        <button
+            class="dock-item"
+            data-app="maps"
+            title="Maps"
+        >
+            <img
+                src="img/dock/maps.webp"
+                alt="Maps"
+            >
+
+            <span class="dock-tooltip">
+                Maps
+            </span>
+        </button>
+
+
+        <!-- Photos -->
+
+        <button
+            class="dock-item"
+            data-app="photos"
+            title="Photos"
+        >
+            <img
+                src="img/dock/photos.webp"
+                alt="Photos"
+            >
+
+            <span class="dock-tooltip">
+                Photos
+            </span>
+        </button>
+
+
+        <!-- FaceTime -->
+
+        <button
+            class="dock-item"
+            data-app="facetime"
+            title="FaceTime"
+        >
+            <img
+                src="img/dock/facetime.webp"
+                alt="FaceTime"
+            >
+
+            <span class="dock-tooltip">
+                FaceTime
+            </span>
+        </button>
+
+
+        <!-- Calendar -->
+
+        <button
+            class="dock-item"
+            data-app="calendar"
+            title="Calendar"
+        >
+            <img
+                src="img/dock/calendar.webp"
+                alt="Calendar"
+            >
+
+            <span class="dock-tooltip">
+                Calendar
+            </span>
+        </button>
+
+
+        <!-- Contacts -->
+
+        <button
+            class="dock-item"
+            data-app="contacts"
+            title="Contacts"
+        >
+            <img
+                src="img/dock/contacts.webp"
+                alt="Contacts"
+            >
+
+            <span class="dock-tooltip">
+                Contacts
+            </span>
+        </button>
+
+
+        <!-- Reminders -->
+
+        <button
+            class="dock-item"
+            data-app="reminders"
+            title="Reminders"
+        >
+            <img
+                src="img/dock/reminders.webp"
+                alt="Reminders"
+            >
+
+            <span class="dock-tooltip">
+                Reminders
+            </span>
+        </button>
+
+
+        <!-- Notes -->
+
+        <button
+            class="dock-item"
+            data-app="notes"
+            title="Notes"
+        >
+            <img
+                src="img/dock/notes.webp"
+                alt="Notes"
+            >
+
+            <span class="dock-tooltip">
+                Notes
+            </span>
+        </button>
+
+
+        <!-- Freeform -->
+
+        <button
+            class="dock-item"
+            data-app="freeform"
+            title="Freeform"
+        >
+            <img
+                src="img/dock/freeform.webp"
+                alt="Freeform"
+            >
+
+            <span class="dock-tooltip">
+                Freeform
+            </span>
+        </button>
+
+
+        <!-- TV -->
+
+        <button
+            class="dock-item"
+            data-app="tv"
+            title="TV"
+        >
+            <img
+                src="img/dock/tv.webp"
+                alt="TV"
+            >
+
+            <span class="dock-tooltip">
+                TV
+            </span>
+        </button>
+
+
+        <!-- Music -->
+
+        <button
+            class="dock-item"
+            data-app="music"
+            title="Music"
+        >
+            <img
+                src="img/dock/music.webp"
+                alt="Music"
+            >
+
+            <span class="dock-tooltip">
+                Music
+            </span>
+        </button>
+
+    </nav>
+
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <span>
+            Made by
+        </span>
+
+        <a
+            href="https://github.com/blurzzd"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <i class="fa-brands fa-github"></i>
+            Blurzzd
+        </a>
+
+    </footer>
+
+</main>
+
+
+<!-- Cache-busted JavaScript -->
+
+<script src="script.js?v=3"></script>
+
 </body>
 </html>
