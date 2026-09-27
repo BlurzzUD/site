@@ -1,0 +1,216 @@
+body{
+    background-color: #2a2941;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.topsz{
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    border-radius: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.leiras{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    position: relative;
+    font-size: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 60px;
+    margin-right: 60px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+}
+
+.github {
+    color: #F5F3FF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer{
+    clear: both;
+    margin-top: 20px;
+    background: linear-gradient(150deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    padding: 20px;
+    border-radius : 10px;
+    text-align: center;
+    font-size: 28px;
+    margin-top: auto;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    transition: transform 0.4s ease;
+}
+
+.mac-buttons {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 7px;
+}
+
+.mac-buttons button {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.close {
+    background: #ff5f57;
+}
+
+.minimize {
+    background: #febc2e;
+}
+
+.maximize {
+    background: #28c840;
+}
+
+.mac-buttons button:hover {
+    filter: brightness(0.85);
+}
+
+.leiras.minimized {
+    transform: scale(0.1) translateY(500px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* MAXIMIZE */
+.leiras.maximized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    z-index: 9999;
+}
+
+.dock {
+    position: fixed;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%) translateY(150px);
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 14px;
+
+    background: rgba(40, 40, 40, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+
+    z-index: 10000;
+
+    opacity: 0;
+
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+}
+
+/* Dock appears */
+.dock.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.dock-item {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.dock-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #4facfe,
+        #0066ff
+    );
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.2s ease;
+}
+
+.dock-icon i {
+    color: white;
+    font-size: 28px;
+}
+
+.dock-item:hover .dock-icon {
+    transform: scale(1.15);
+}
+
+/* App name above the icon */
+.dock-item span {
+    position: absolute;
+
+    bottom: 65px;
+
+    padding: 5px 9px;
+
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.dock-item:hover span {
+    opacity: 1;
+}
+
+.footer.dock-open {
+    transform: translateY(-95px);
+}
