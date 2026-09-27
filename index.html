@@ -248,15 +248,11 @@
 
             <div class="safari-controls">
 
-                <button
-                    aria-label="Vissza"
-                >
+                <button aria-label="Vissza">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
-                <button
-                    aria-label="Előre"
-                >
+                <button aria-label="Előre">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
 
@@ -300,6 +296,257 @@
 
 
     <!-- =========================
+         Messages
+    ========================== -->
+
+    <section
+        class="mac-window messages-window"
+        id="messages-window"
+        data-app="messages"
+        aria-label="Messages"
+        style="display: none;"
+    >
+
+        <header class="window-titlebar messages-titlebar">
+
+            <div class="traffic-lights">
+
+                <button
+                    class="window-button close"
+                    aria-label="Bezárás"
+                    onclick="closeWindow('messages-window')"
+                ></button>
+
+                <button
+                    class="window-button minimize"
+                    aria-label="Minimalizálás"
+                    onclick="minimizeWindow('messages-window')"
+                ></button>
+
+                <button
+                    class="window-button maximize"
+                    aria-label="Teljes képernyő"
+                    onclick="maximizeWindow('messages-window')"
+                ></button>
+
+            </div>
+
+            <div class="window-title">
+                <i class="fa-solid fa-message"></i>
+                <span>Messages</span>
+            </div>
+
+        </header>
+
+
+        <div class="messages-body">
+
+            <aside class="messages-sidebar">
+
+                <div class="messages-sidebar-header">
+
+                    <strong>Messages</strong>
+
+                    <button
+                        aria-label="Új üzenet"
+                        title="Új üzenet"
+                    >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="message-conversation active"
+                >
+
+                    <div class="message-avatar">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+
+                    <div class="message-preview">
+
+                        <strong>BlurzzUD/site</strong>
+
+                        <span>
+                            Legutóbbi commit: portfolio updates
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="message-conversation"
+                >
+
+                    <div class="message-avatar project-avatar">
+                        S
+                    </div>
+
+                    <div class="message-preview">
+
+                        <strong>site</strong>
+
+                        <span>
+                            Projekt frissítések
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="message-conversation"
+                >
+
+                    <div class="message-avatar project-avatar">
+                        D
+                    </div>
+
+                    <div class="message-preview">
+
+                        <strong>Dev Projects</strong>
+
+                        <span>
+                            Új fejlesztési ötlet
+                        </span>
+
+                    </div>
+
+                </button>
+
+            </aside>
+
+
+            <div class="messages-chat">
+
+                <div class="messages-chat-header">
+
+                    <div class="message-avatar">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            BlurzzUD/site
+                        </strong>
+
+                        <span>
+                            GitHub repository
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="messages-content">
+
+                    <div class="message-date">
+                        Ma
+                    </div>
+
+
+                    <div class="message-row received">
+
+                        <div class="message-bubble">
+
+                            <strong>
+                                BlurzzUD/site
+                            </strong>
+
+                            <p>
+                                A projekt weboldala frissítve lett.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="message-row sent">
+
+                        <div class="message-bubble">
+
+                            <p>
+                                Working on the macOS-style interface.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="message-row received">
+
+                        <div class="message-bubble">
+
+                            <strong>
+                                GitHub
+                            </strong>
+
+                            <p>
+                                Új változtatások érkeztek a projektbe.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="message-row sent">
+
+                        <div class="message-bubble">
+
+                            <p>
+                                Safari és Messages ablak hozzáadva.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="messages-input-area">
+
+                    <button
+                        aria-label="Csatolmány"
+                        title="Csatolmány"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <input
+                        type="text"
+                        placeholder="iMessage"
+                        aria-label="Üzenet"
+                    >
+
+                    <button
+                        class="send-message"
+                        aria-label="Küldés"
+                    >
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
          Dock
     ========================== -->
 
@@ -307,8 +554,6 @@
         class="dock"
         aria-label="Alkalmazások"
     >
-
-        <!-- Finder -->
 
         <button
             class="dock-item"
@@ -326,8 +571,6 @@
         </button>
 
 
-        <!-- Launchpad -->
-
         <button
             class="dock-item"
             data-app="launchpad"
@@ -344,13 +587,10 @@
         </button>
 
 
-        <!-- Safari -->
-
         <button
             class="dock-item"
             data-app="safari"
             title="Safari"
-            onclick="openApp('safari')"
         >
             <img
                 src="img/dock/safari.webp"
@@ -362,8 +602,6 @@
             </span>
         </button>
 
-
-        <!-- Messages -->
 
         <button
             class="dock-item"
@@ -381,8 +619,6 @@
         </button>
 
 
-        <!-- Mail -->
-
         <button
             class="dock-item"
             data-app="mail"
@@ -398,8 +634,6 @@
             </span>
         </button>
 
-
-        <!-- Maps -->
 
         <button
             class="dock-item"
@@ -417,8 +651,6 @@
         </button>
 
 
-        <!-- Photos -->
-
         <button
             class="dock-item"
             data-app="photos"
@@ -434,8 +666,6 @@
             </span>
         </button>
 
-
-        <!-- FaceTime -->
 
         <button
             class="dock-item"
@@ -453,8 +683,6 @@
         </button>
 
 
-        <!-- Calendar -->
-
         <button
             class="dock-item"
             data-app="calendar"
@@ -470,8 +698,6 @@
             </span>
         </button>
 
-
-        <!-- Contacts -->
 
         <button
             class="dock-item"
@@ -489,8 +715,6 @@
         </button>
 
 
-        <!-- Reminders -->
-
         <button
             class="dock-item"
             data-app="reminders"
@@ -506,8 +730,6 @@
             </span>
         </button>
 
-
-        <!-- Notes -->
 
         <button
             class="dock-item"
@@ -525,8 +747,6 @@
         </button>
 
 
-        <!-- Freeform -->
-
         <button
             class="dock-item"
             data-app="freeform"
@@ -543,8 +763,6 @@
         </button>
 
 
-        <!-- TV -->
-
         <button
             class="dock-item"
             data-app="tv"
@@ -560,8 +778,6 @@
             </span>
         </button>
 
-
-        <!-- Music -->
 
         <button
             class="dock-item"
@@ -588,9 +804,7 @@
 
     <footer class="site-footer">
 
-        <span>
-            Made by
-        </span>
+        <span>Made by</span>
 
         <a
             href="https://github.com/blurzzd"
@@ -606,7 +820,7 @@
 </main>
 
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 
 </body>
 </html>
