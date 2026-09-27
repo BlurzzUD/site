@@ -14,7 +14,6 @@ function focusWindow(windowElement) {
     if (!windowElement) return;
 
     highestZIndex += 1;
-
     windowElement.style.zIndex = highestZIndex;
 }
 
@@ -61,9 +60,7 @@ function minimizeWindow(id) {
 
     if (!windowElement) return;
 
-    windowElement.classList.add(
-        "minimized"
-    );
+    windowElement.classList.add("minimized");
 }
 
 
@@ -202,6 +199,162 @@ function openMessages() {
 
 
 /* =========================
+   Mail
+========================= */
+
+function openMail() {
+    console.log("Opening Mail");
+
+    const mail =
+        document.getElementById(
+            "mail-window"
+        );
+
+    if (!mail) {
+        console.error(
+            "Mail window not found!"
+        );
+
+        return;
+    }
+
+    mail.style.display = "flex";
+    mail.style.visibility = "visible";
+    mail.style.opacity = "1";
+    mail.style.pointerEvents = "auto";
+
+    mail.classList.remove(
+        "minimized"
+    );
+
+    focusWindow(mail);
+
+    setDockRunning(
+        "mail",
+        true
+    );
+
+    setTimeout(() => {
+        const subject =
+            document.getElementById(
+                "mail-subject"
+            );
+
+        if (subject) {
+            subject.focus();
+        }
+    }, 0);
+}
+
+
+function focusMailCompose() {
+    openMail();
+
+    setTimeout(() => {
+        const subject =
+            document.getElementById(
+                "mail-subject"
+            );
+
+        if (subject) {
+            subject.focus();
+        }
+    }, 0);
+}
+
+
+function sendMail(event) {
+    event.preventDefault();
+
+    const subjectInput =
+        document.getElementById(
+            "mail-subject"
+        );
+
+    const bodyInput =
+        document.getElementById(
+            "mail-body-text"
+        );
+
+    const status =
+        document.getElementById(
+            "mail-status"
+        );
+
+    if (!subjectInput || !bodyInput) {
+        return;
+    }
+
+    const subject =
+        subjectInput.value.trim();
+
+    const body =
+        bodyInput.value.trim();
+
+    if (!subject && !body) {
+
+        if (status) {
+            status.textContent =
+                "Írj egy tárgyat vagy üzenetet.";
+        }
+
+        bodyInput.focus();
+
+        return;
+    }
+
+
+    const params =
+        new URLSearchParams();
+
+
+    if (subject) {
+        params.set(
+            "subject",
+            subject
+        );
+    }
+
+
+    if (body) {
+        params.set(
+            "body",
+            body
+        );
+    }
+
+
+    const mailtoUrl =
+        "mailto:kpiti359@gmail.com" +
+        (
+            params.toString()
+                ? "?" + params.toString()
+                : ""
+        );
+
+
+    if (status) {
+        status.textContent =
+            "Levelezőprogram megnyitása…";
+    }
+
+
+    window.location.href =
+        mailtoUrl;
+
+
+    setTimeout(() => {
+
+        if (status) {
+            status.textContent =
+                "A levelezőprogramban ellenőrizd és küldd el az üzenetet.";
+        }
+
+    }, 1000);
+}
+
+
+/* =========================
    General app launcher
 ========================= */
 
@@ -210,6 +363,7 @@ function openApp(app) {
         "Opening app:",
         app
     );
+
 
     if (app === "finder") {
 
@@ -258,6 +412,12 @@ function openApp(app) {
     }
 
 
+    if (app === "mail") {
+        openMail();
+        return;
+    }
+
+
     console.log(
         `No window has been created for ${app} yet.`
     );
@@ -269,28 +429,32 @@ function openApp(app) {
 ========================= */
 
 function setupDock() {
+
     const dockItems = [
         ...document.querySelectorAll(
             ".dock-item"
         )
     ];
 
-    dockItems.forEach((dockItem) => {
 
-        dockItem.addEventListener(
-            "click",
-            () => {
+    dockItems.forEach(
+        (dockItem) => {
 
-                const app =
-                    dockItem.dataset.app;
+            dockItem.addEventListener(
+                "click",
+                () => {
 
-                if (!app) return;
+                    const app =
+                        dockItem.dataset.app;
 
-                openApp(app);
-            }
-        );
+                    if (!app) return;
 
-    });
+                    openApp(app);
+                }
+            );
+
+        }
+    );
 }
 
 
@@ -299,6 +463,7 @@ function setupDock() {
 ========================= */
 
 function setupDockMagnification() {
+
     const dock =
         document.querySelector(
             ".dock"
@@ -310,9 +475,11 @@ function setupDockMagnification() {
         )
     ];
 
+
     if (!dock || !items.length) {
         return;
     }
+
 
     dock.addEventListener(
         "mousemove",
@@ -321,26 +488,31 @@ function setupDockMagnification() {
             const mouseX =
                 event.clientX;
 
-            items.forEach((item) => {
 
-                const rect =
-                    item.getBoundingClientRect();
+            items.forEach(
+                (item) => {
 
-                const center =
-                    rect.left +
-                    rect.width / 2;
+                    const rect =
+                        item.getBoundingClientRect();
 
-                const distance =
-                    Math.abs(
-                        mouseX - center
+                    const center =
+                        rect.left +
+                        rect.width / 2;
+
+                    const distance =
+                        Math.abs(
+                            mouseX - center
+                        );
+
+
+                    item.classList.toggle(
+                        "near",
+                        distance < 110 &&
+                        distance > 35
                     );
 
-                item.classList.toggle(
-                    "near",
-                    distance < 110 &&
-                    distance > 35
-                );
-            });
+                }
+            );
         }
     );
 
@@ -349,11 +521,15 @@ function setupDockMagnification() {
         "mouseleave",
         () => {
 
-            items.forEach((item) => {
-                item.classList.remove(
-                    "near"
-                );
-            });
+            items.forEach(
+                (item) => {
+
+                    item.classList.remove(
+                        "near"
+                    );
+
+                }
+            );
 
         }
     );
@@ -365,37 +541,44 @@ function setupDockMagnification() {
 ========================= */
 
 function setupWindows() {
+
     const windows = [
         ...document.querySelectorAll(
             ".mac-window"
         )
     ];
 
-    windows.forEach((windowElement) => {
 
-        windowElement.addEventListener(
-            "pointerdown",
-            () => {
-                focusWindow(
-                    windowElement
-                );
-            }
-        );
+    windows.forEach(
+        (windowElement) => {
 
+            windowElement.addEventListener(
+                "pointerdown",
+                () => {
 
-        if (
-            window.getComputedStyle(
-                windowElement
-            ).display !== "none"
-        ) {
+                    focusWindow(
+                        windowElement
+                    );
 
-            setDockRunning(
-                windowElement.dataset.app,
-                true
+                }
             );
-        }
 
-    });
+
+            if (
+                window.getComputedStyle(
+                    windowElement
+                ).display !== "none"
+            ) {
+
+                setDockRunning(
+                    windowElement.dataset.app,
+                    true
+                );
+
+            }
+
+        }
+    );
 }
 
 
@@ -411,6 +594,7 @@ function setupMessages() {
         )
     ];
 
+
     conversations.forEach(
         (conversation) => {
 
@@ -420,15 +604,19 @@ function setupMessages() {
 
                     conversations.forEach(
                         (item) => {
+
                             item.classList.remove(
                                 "active"
                             );
+
                         }
                     );
+
 
                     conversation.classList.add(
                         "active"
                     );
+
                 }
             );
 
@@ -446,6 +634,7 @@ function setupMessages() {
             ".send-message"
         );
 
+
     if (!input || !sendButton) {
         return;
     }
@@ -456,12 +645,17 @@ function setupMessages() {
         const text =
             input.value.trim();
 
-        if (!text) return;
+
+        if (!text) {
+            return;
+        }
+
 
         const messagesContent =
             document.querySelector(
                 ".messages-content"
             );
+
 
         if (!messagesContent) {
             return;
@@ -499,9 +693,11 @@ function setupMessages() {
             paragraph
         );
 
+
         row.appendChild(
             bubble
         );
+
 
         messagesContent.appendChild(
             row
@@ -509,6 +705,7 @@ function setupMessages() {
 
 
         input.value = "";
+
 
         messagesContent.scrollTop =
             messagesContent.scrollHeight;
@@ -530,6 +727,7 @@ function setupMessages() {
                 event.preventDefault();
 
                 sendMessage();
+
             }
 
         }
@@ -581,13 +779,17 @@ function setupKeyboardShortcuts() {
                     focusedWindow.classList.remove(
                         "maximized"
                     );
+
                 }
+
             }
 
 
             if (
-                (event.metaKey ||
-                    event.ctrlKey) &&
+                (
+                    event.metaKey ||
+                    event.ctrlKey
+                ) &&
                 event.shiftKey &&
                 event.key.toLowerCase() === "f"
             ) {
@@ -595,6 +797,7 @@ function setupKeyboardShortcuts() {
                 event.preventDefault();
 
                 openApp("finder");
+
             }
 
         }
@@ -619,5 +822,6 @@ document.addEventListener(
         console.log(
             "Blurzzd desktop initialized."
         );
+
     }
 );
