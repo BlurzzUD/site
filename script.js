@@ -1,8 +1,4 @@
-let highestZIndex = 20;
-
-/* =========================
-   Window helpers
-========================= */
+let highestZIndex = 100;
 
 function getWindow(id) {
     return document.getElementById(id);
@@ -24,6 +20,7 @@ function setDockRunning(app, running) {
 
     dockItem.classList.toggle("running", running);
 }
+
 
 /* =========================
    Window controls
@@ -50,13 +47,6 @@ function minimizeWindow(id) {
     if (!windowElement) return;
 
     windowElement.classList.add("minimized");
-
-    setTimeout(() => {
-        setDockRunning(
-            windowElement.dataset.app,
-            true
-        );
-    }, 180);
 }
 
 function restoreWindow(id) {
@@ -85,6 +75,7 @@ function maximizeWindow(id) {
     focusWindow(windowElement);
 }
 
+
 /* =========================
    GitHub
 ========================= */
@@ -97,55 +88,124 @@ function openGitHub() {
     );
 }
 
+
 /* =========================
-   Open apps
+   Safari
+========================= */
+
+function openSafari() {
+    console.log("Opening Safari");
+
+    const safari = document.getElementById("safari-window");
+
+    if (!safari) {
+        console.error("ERROR: #safari-window does not exist!");
+        return;
+    }
+
+    console.log("Safari element found:", safari);
+
+    /*
+     * Force Safari to be visible.
+     */
+    safari.style.display = "flex";
+    safari.style.visibility = "visible";
+    safari.style.opacity = "1";
+    safari.style.pointerEvents = "auto";
+
+    /*
+     * Remove minimized state.
+     */
+    safari.classList.remove("minimized");
+
+    /*
+     * Bring Safari above every other window.
+     */
+    focusWindow(safari);
+
+    /*
+     * Mark Safari as running in the Dock.
+     */
+    setDockRunning("safari", true);
+
+    console.log(
+        "Safari display:",
+        safari.style.display
+    );
+
+    console.log(
+        "Safari computed display:",
+        window.getComputedStyle(safari).display
+    );
+}
+
+
+/* =========================
+   General app launcher
 ========================= */
 
 function openApp(app) {
+    console.log("Opening app:", app);
 
-    /* Finder */
+    if (app === "safari") {
+        openSafari();
+        return;
+    }
+
     if (app === "finder") {
-        const finder = getWindow("finder-window");
+        const finder = document.getElementById(
+            "finder-window"
+        );
 
         if (!finder) {
-            console.error("Finder window not found!");
+            console.error(
+                "ERROR: #finder-window does not exist!"
+            );
             return;
         }
 
         finder.style.display = "flex";
+        finder.style.visibility = "visible";
+        finder.style.opacity = "1";
+        finder.style.pointerEvents = "auto";
+
         finder.classList.remove("minimized");
 
-        requestAnimationFrame(() => {
-            focusWindow(finder);
-            setDockRunning("finder", true);
-        });
+        focusWindow(finder);
+
+        setDockRunning("finder", true);
 
         return;
     }
 
-    /* Safari */
-    if (app === "safari") {
-        const safari = getWindow("safari-window");
-
-        if (!safari) {
-            console.error("Safari window not found!");
-            return;
-        }
-
-        safari.style.display = "flex";
-        safari.classList.remove("minimized");
-
-        requestAnimationFrame(() => {
-            focusWindow(safari);
-            setDockRunning("safari", true);
-        });
-
-        return;
-    }
-
-    /* Other apps */
-    console.log(`Opening ${app}`);
+    console.log(
+        `No window has been created for ${app} yet.`
+    );
 }
+
+
+/* =========================
+   Dock
+========================= */
+
+function setupDock() {
+    const dockItems = [
+        ...document.querySelectorAll(".dock-item")
+    ];
+
+    dockItems.forEach((dockItem) => {
+
+        dockItem.addEventListener("click", () => {
+
+            const app = dockItem.dataset.app;
+
+            if (!app) return;
+
+            openApp(app);
+        });
+    });
+}
+
 
 /* =========================
    Dock magnification
@@ -153,6 +213,7 @@ function openApp(app) {
 
 function setupDockMagnification() {
     const dock = document.querySelector(".dock");
+
     const items = [
         ...document.querySelectorAll(".dock-item")
     ];
@@ -160,12 +221,19 @@ function setupDockMagnification() {
     if (!dock || !items.length) return;
 
     dock.addEventListener("mousemove", (event) => {
+
         const mouseX = event.clientX;
 
         items.forEach((item) => {
-            const rect = item.getBoundingClientRect();
-            const center = rect.left + rect.width / 2;
-            const distance = Math.abs(mouseX - center);
+
+            const rect =
+                item.getBoundingClientRect();
+
+            const center =
+                rect.left + rect.width / 2;
+
+            const distance =
+                Math.abs(mouseX - center);
 
             item.classList.toggle(
                 "near",
@@ -175,11 +243,13 @@ function setupDockMagnification() {
     });
 
     dock.addEventListener("mouseleave", () => {
+
         items.forEach((item) => {
             item.classList.remove("near");
         });
     });
 }
+
 
 /* =========================
    Window setup
@@ -200,12 +270,12 @@ function setupWindows() {
         );
 
         /*
-         * Only show the running indicator
-         * for windows that are actually visible.
+         * Finder starts visible.
+         * Hidden windows stay stopped.
          */
         if (
-            windowElement.style.display !== "none" &&
-            !windowElement.classList.contains("minimized")
+            window.getComputedStyle(windowElement).display !==
+            "none"
         ) {
             setDockRunning(
                 windowElement.dataset.app,
@@ -215,88 +285,94 @@ function setupWindows() {
     });
 }
 
-/* =========================
-   Dock setup
-========================= */
-
-function setupDock() {
-    const dockItems = [
-        ...document.querySelectorAll(".dock-item")
-    ];
-
-    dockItems.forEach((dockItem) => {
-
-        dockItem.addEventListener("click", () => {
-            const app = dockItem.dataset.app;
-
-            if (!app) return;
-
-            openApp(app);
-        });
-
-    });
-}
 
 /* =========================
    Keyboard shortcuts
 ========================= */
 
 function setupKeyboardShortcuts() {
-    document.addEventListener("keydown", (event) => {
 
-        /*
-         * Escape exits maximized mode.
-         */
-        if (event.key === "Escape") {
+    document.addEventListener(
+        "keydown",
+        (event) => {
 
-            const windows = [
-                ...document.querySelectorAll(".mac-window")
-            ];
+            if (event.key === "Escape") {
 
-            if (!windows.length) return;
+                const windows = [
+                    ...document.querySelectorAll(
+                        ".mac-window"
+                    )
+                ];
 
-            windows.sort(
-                (a, b) =>
-                    Number(b.style.zIndex || 0) -
-                    Number(a.style.zIndex || 0)
-            );
+                windows.sort(
+                    (a, b) =>
+                        Number(
+                            b.style.zIndex || 0
+                        ) -
+                        Number(
+                            a.style.zIndex || 0
+                        )
+                );
 
-            const focusedWindow = windows[0];
+                const focusedWindow =
+                    windows[0];
+
+                if (
+                    focusedWindow &&
+                    focusedWindow.classList.contains(
+                        "maximized"
+                    )
+                ) {
+                    focusedWindow.classList.remove(
+                        "maximized"
+                    );
+                }
+            }
+
 
             if (
-                focusedWindow &&
-                focusedWindow.classList.contains("maximized")
+                (event.metaKey || event.ctrlKey) &&
+                event.shiftKey &&
+                event.key.toLowerCase() === "f"
             ) {
-                focusedWindow.classList.remove("maximized");
+                event.preventDefault();
+
+                openApp("finder");
             }
         }
-
-        /*
-         * Cmd/Ctrl + Shift + F
-         * opens Finder.
-         */
-        if (
-            (event.metaKey || event.ctrlKey) &&
-            event.shiftKey &&
-            event.key.toLowerCase() === "f"
-        ) {
-            event.preventDefault();
-
-            openApp("finder");
-        }
-    });
+    );
 }
 
+
 /* =========================
-   Start everything
+   Safari reload
+========================= */
+
+function reloadSafari() {
+    const frame =
+        document.getElementById("safari-frame");
+
+    if (!frame) return;
+
+    frame.src = frame.src;
+}
+
+
+/* =========================
+   Start
 ========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
         setupWindows();
         setupDock();
         setupDockMagnification();
         setupKeyboardShortcuts();
+
+        console.log(
+            "Blurzzd desktop initialized."
+        );
     }
 );
