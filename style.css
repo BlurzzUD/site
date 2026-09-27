@@ -112,22 +112,30 @@ button {
     font-size: 14px;
 }
 
-/* Windows */
+
+
+/* =========================
+   Windows
+========================= */
 
 .mac-window {
     position: absolute;
-    top: 50%;
+
+    top: auto;
     left: 50%;
+    bottom: 104px;
 
     width: min(1050px, calc(100vw - 80px));
-    height: min(650px, calc(100vh - 180px));
+    height: min(650px, calc(100vh - 150px));
+    max-height: calc(100vh - 150px);
 
     display: flex;
     flex-direction: column;
 
     overflow: hidden;
 
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+
     border: 1px solid var(--glass-border);
     border-radius: var(--window-radius);
 
@@ -152,26 +160,30 @@ button {
         opacity 0.22s ease,
         transform 0.22s ease,
         width 0.22s ease,
-        height 0.22s ease,
-        border-radius 0.22s ease;
+        height 0.22s ease;
 }
 
 .mac-window.minimized {
     opacity: 0;
+
     transform:
-        translate(-50%, 70vh)
+        translate(-50%, calc(100vh + 120px))
         scale(0.15);
+
     pointer-events: none;
 }
 
 .mac-window.maximized {
     top: 0;
     left: 0;
+    bottom: 104px;
 
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 104px);
+    max-height: none;
 
     transform: none;
+
     border-radius: 0;
 }
 
@@ -834,21 +846,7 @@ button {
 
 /* Keep windows above the Dock but inside the usable desktop area */
 
-.mac-window {
-    max-height: calc(100vh - 190px);
-}
 
-.mac-window.maximized {
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: calc(100vh - 0px);
-
-    max-height: none;
-
-    border-radius: 0;
-}
 
 /* Mobile */
 
