@@ -1,15 +1,23 @@
 let highestZIndex = 100;
 
+
+/* =========================
+   Helpers
+========================= */
+
 function getWindow(id) {
     return document.getElementById(id);
 }
+
 
 function focusWindow(windowElement) {
     if (!windowElement) return;
 
     highestZIndex += 1;
+
     windowElement.style.zIndex = highestZIndex;
 }
+
 
 function setDockRunning(app, running) {
     const dockItem = document.querySelector(
@@ -18,7 +26,10 @@ function setDockRunning(app, running) {
 
     if (!dockItem) return;
 
-    dockItem.classList.toggle("running", running);
+    dockItem.classList.toggle(
+        "running",
+        running
+    );
 }
 
 
@@ -32,8 +43,11 @@ function closeWindow(id) {
     if (!windowElement) return;
 
     windowElement.style.display = "none";
-    windowElement.classList.remove("minimized");
-    windowElement.classList.remove("maximized");
+
+    windowElement.classList.remove(
+        "minimized",
+        "maximized"
+    );
 
     setDockRunning(
         windowElement.dataset.app,
@@ -41,13 +55,17 @@ function closeWindow(id) {
     );
 }
 
+
 function minimizeWindow(id) {
     const windowElement = getWindow(id);
 
     if (!windowElement) return;
 
-    windowElement.classList.add("minimized");
+    windowElement.classList.add(
+        "minimized"
+    );
 }
+
 
 function restoreWindow(id) {
     const windowElement = getWindow(id);
@@ -55,7 +73,10 @@ function restoreWindow(id) {
     if (!windowElement) return;
 
     windowElement.style.display = "flex";
-    windowElement.classList.remove("minimized");
+
+    windowElement.classList.remove(
+        "minimized"
+    );
 
     focusWindow(windowElement);
 
@@ -65,12 +86,15 @@ function restoreWindow(id) {
     );
 }
 
+
 function maximizeWindow(id) {
     const windowElement = getWindow(id);
 
     if (!windowElement) return;
 
-    windowElement.classList.toggle("maximized");
+    windowElement.classList.toggle(
+        "maximized"
+    );
 
     focusWindow(windowElement);
 }
@@ -96,46 +120,83 @@ function openGitHub() {
 function openSafari() {
     console.log("Opening Safari");
 
-    const safari = document.getElementById("safari-window");
+    const safari =
+        document.getElementById(
+            "safari-window"
+        );
 
     if (!safari) {
-        console.error("ERROR: #safari-window does not exist!");
+        console.error(
+            "Safari window not found!"
+        );
+
         return;
     }
 
-    console.log("Safari element found:", safari);
-
-    /*
-     * Force Safari to be visible.
-     */
     safari.style.display = "flex";
     safari.style.visibility = "visible";
     safari.style.opacity = "1";
     safari.style.pointerEvents = "auto";
 
-    /*
-     * Remove minimized state.
-     */
-    safari.classList.remove("minimized");
-
-    /*
-     * Bring Safari above every other window.
-     */
-    focusWindow(safari);
-
-    /*
-     * Mark Safari as running in the Dock.
-     */
-    setDockRunning("safari", true);
-
-    console.log(
-        "Safari display:",
-        safari.style.display
+    safari.classList.remove(
+        "minimized"
     );
 
-    console.log(
-        "Safari computed display:",
-        window.getComputedStyle(safari).display
+    focusWindow(safari);
+
+    setDockRunning(
+        "safari",
+        true
+    );
+}
+
+
+function reloadSafari() {
+    const frame =
+        document.getElementById(
+            "safari-frame"
+        );
+
+    if (!frame) return;
+
+    frame.src = frame.src;
+}
+
+
+/* =========================
+   Messages
+========================= */
+
+function openMessages() {
+    console.log("Opening Messages");
+
+    const messages =
+        document.getElementById(
+            "messages-window"
+        );
+
+    if (!messages) {
+        console.error(
+            "Messages window not found!"
+        );
+
+        return;
+    }
+
+    messages.style.display = "flex";
+    messages.style.visibility = "visible";
+    messages.style.opacity = "1";
+    messages.style.pointerEvents = "auto";
+
+    messages.classList.remove(
+        "minimized"
+    );
+
+    focusWindow(messages);
+
+    setDockRunning(
+        "messages",
+        true
     );
 }
 
@@ -145,22 +206,23 @@ function openSafari() {
 ========================= */
 
 function openApp(app) {
-    console.log("Opening app:", app);
-
-    if (app === "safari") {
-        openSafari();
-        return;
-    }
+    console.log(
+        "Opening app:",
+        app
+    );
 
     if (app === "finder") {
-        const finder = document.getElementById(
-            "finder-window"
-        );
+
+        const finder =
+            document.getElementById(
+                "finder-window"
+            );
 
         if (!finder) {
             console.error(
-                "ERROR: #finder-window does not exist!"
+                "Finder window not found!"
             );
+
             return;
         }
 
@@ -169,14 +231,32 @@ function openApp(app) {
         finder.style.opacity = "1";
         finder.style.pointerEvents = "auto";
 
-        finder.classList.remove("minimized");
+        finder.classList.remove(
+            "minimized"
+        );
 
         focusWindow(finder);
 
-        setDockRunning("finder", true);
+        setDockRunning(
+            "finder",
+            true
+        );
 
         return;
     }
+
+
+    if (app === "safari") {
+        openSafari();
+        return;
+    }
+
+
+    if (app === "messages") {
+        openMessages();
+        return;
+    }
+
 
     console.log(
         `No window has been created for ${app} yet.`
@@ -190,19 +270,26 @@ function openApp(app) {
 
 function setupDock() {
     const dockItems = [
-        ...document.querySelectorAll(".dock-item")
+        ...document.querySelectorAll(
+            ".dock-item"
+        )
     ];
 
     dockItems.forEach((dockItem) => {
 
-        dockItem.addEventListener("click", () => {
+        dockItem.addEventListener(
+            "click",
+            () => {
 
-            const app = dockItem.dataset.app;
+                const app =
+                    dockItem.dataset.app;
 
-            if (!app) return;
+                if (!app) return;
 
-            openApp(app);
-        });
+                openApp(app);
+            }
+        );
+
     });
 }
 
@@ -212,42 +299,64 @@ function setupDock() {
 ========================= */
 
 function setupDockMagnification() {
-    const dock = document.querySelector(".dock");
+    const dock =
+        document.querySelector(
+            ".dock"
+        );
 
     const items = [
-        ...document.querySelectorAll(".dock-item")
+        ...document.querySelectorAll(
+            ".dock-item"
+        )
     ];
 
-    if (!dock || !items.length) return;
+    if (!dock || !items.length) {
+        return;
+    }
 
-    dock.addEventListener("mousemove", (event) => {
+    dock.addEventListener(
+        "mousemove",
+        (event) => {
 
-        const mouseX = event.clientX;
+            const mouseX =
+                event.clientX;
 
-        items.forEach((item) => {
+            items.forEach((item) => {
 
-            const rect =
-                item.getBoundingClientRect();
+                const rect =
+                    item.getBoundingClientRect();
 
-            const center =
-                rect.left + rect.width / 2;
+                const center =
+                    rect.left +
+                    rect.width / 2;
 
-            const distance =
-                Math.abs(mouseX - center);
+                const distance =
+                    Math.abs(
+                        mouseX - center
+                    );
 
-            item.classList.toggle(
-                "near",
-                distance < 110 && distance > 35
-            );
-        });
-    });
+                item.classList.toggle(
+                    "near",
+                    distance < 110 &&
+                    distance > 35
+                );
+            });
+        }
+    );
 
-    dock.addEventListener("mouseleave", () => {
 
-        items.forEach((item) => {
-            item.classList.remove("near");
-        });
-    });
+    dock.addEventListener(
+        "mouseleave",
+        () => {
+
+            items.forEach((item) => {
+                item.classList.remove(
+                    "near"
+                );
+            });
+
+        }
+    );
 }
 
 
@@ -257,7 +366,9 @@ function setupDockMagnification() {
 
 function setupWindows() {
     const windows = [
-        ...document.querySelectorAll(".mac-window")
+        ...document.querySelectorAll(
+            ".mac-window"
+        )
     ];
 
     windows.forEach((windowElement) => {
@@ -265,24 +376,164 @@ function setupWindows() {
         windowElement.addEventListener(
             "pointerdown",
             () => {
-                focusWindow(windowElement);
+                focusWindow(
+                    windowElement
+                );
             }
         );
 
-        /*
-         * Finder starts visible.
-         * Hidden windows stay stopped.
-         */
+
         if (
-            window.getComputedStyle(windowElement).display !==
-            "none"
+            window.getComputedStyle(
+                windowElement
+            ).display !== "none"
         ) {
+
             setDockRunning(
                 windowElement.dataset.app,
                 true
             );
         }
+
     });
+}
+
+
+/* =========================
+   Messages interactions
+========================= */
+
+function setupMessages() {
+
+    const conversations = [
+        ...document.querySelectorAll(
+            ".message-conversation"
+        )
+    ];
+
+    conversations.forEach(
+        (conversation) => {
+
+            conversation.addEventListener(
+                "click",
+                () => {
+
+                    conversations.forEach(
+                        (item) => {
+                            item.classList.remove(
+                                "active"
+                            );
+                        }
+                    );
+
+                    conversation.classList.add(
+                        "active"
+                    );
+                }
+            );
+
+        }
+    );
+
+
+    const input =
+        document.querySelector(
+            ".messages-input-area input"
+        );
+
+    const sendButton =
+        document.querySelector(
+            ".send-message"
+        );
+
+    if (!input || !sendButton) {
+        return;
+    }
+
+
+    function sendMessage() {
+
+        const text =
+            input.value.trim();
+
+        if (!text) return;
+
+        const messagesContent =
+            document.querySelector(
+                ".messages-content"
+            );
+
+        if (!messagesContent) {
+            return;
+        }
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+        row.className =
+            "message-row sent";
+
+
+        const bubble =
+            document.createElement(
+                "div"
+            );
+
+        bubble.className =
+            "message-bubble";
+
+
+        const paragraph =
+            document.createElement(
+                "p"
+            );
+
+        paragraph.textContent =
+            text;
+
+
+        bubble.appendChild(
+            paragraph
+        );
+
+        row.appendChild(
+            bubble
+        );
+
+        messagesContent.appendChild(
+            row
+        );
+
+
+        input.value = "";
+
+        messagesContent.scrollTop =
+            messagesContent.scrollHeight;
+    }
+
+
+    sendButton.addEventListener(
+        "click",
+        sendMessage
+    );
+
+
+    input.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendMessage();
+            }
+
+        }
+    );
 }
 
 
@@ -304,6 +555,7 @@ function setupKeyboardShortcuts() {
                     )
                 ];
 
+
                 windows.sort(
                     (a, b) =>
                         Number(
@@ -314,8 +566,10 @@ function setupKeyboardShortcuts() {
                         )
                 );
 
+
                 const focusedWindow =
                     windows[0];
+
 
                 if (
                     focusedWindow &&
@@ -323,6 +577,7 @@ function setupKeyboardShortcuts() {
                         "maximized"
                     )
                 ) {
+
                     focusedWindow.classList.remove(
                         "maximized"
                     );
@@ -331,30 +586,19 @@ function setupKeyboardShortcuts() {
 
 
             if (
-                (event.metaKey || event.ctrlKey) &&
+                (event.metaKey ||
+                    event.ctrlKey) &&
                 event.shiftKey &&
                 event.key.toLowerCase() === "f"
             ) {
+
                 event.preventDefault();
 
                 openApp("finder");
             }
+
         }
     );
-}
-
-
-/* =========================
-   Safari reload
-========================= */
-
-function reloadSafari() {
-    const frame =
-        document.getElementById("safari-frame");
-
-    if (!frame) return;
-
-    frame.src = frame.src;
 }
 
 
@@ -369,6 +613,7 @@ document.addEventListener(
         setupWindows();
         setupDock();
         setupDockMagnification();
+        setupMessages();
         setupKeyboardShortcuts();
 
         console.log(
