@@ -96,23 +96,22 @@ function openApp(app) {
     };
 
     const windowId = windowMap[app];
-
-    if (!windowId) {
-        console.log(`Opening ${app}`);
-        return;
-    }
-
     const appWindow = getWindow(windowId);
 
-    if (!appWindow) return;
+    if (!appWindow) {
+        console.log(`App window not found: ${app}`);
+        return;
+    }
 
     appWindow.style.display = "flex";
     appWindow.classList.remove("minimized");
 
-    focusWindow(appWindow);
-
-    setDockRunning(app, true);
+    requestAnimationFrame(() => {
+        focusWindow(appWindow);
+        setDockRunning(app, true);
+    });
 }
+
 
 function setupDockMagnification() {
     const dock = document.querySelector(".dock");
