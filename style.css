@@ -733,3 +733,136 @@ button {
         min-height: 145px;
     }
 }
+/* =========================
+   Safari
+========================= */
+
+.safari-window {
+    width: min(1200px, calc(100vw - 80px));
+
+    /*
+     * Leave enough room for the Dock so the bottom
+     * of the window never disappears behind it.
+     */
+    height: min(
+        720px,
+        calc(100vh - 210px)
+    );
+}
+
+.safari-titlebar {
+    min-height: 58px;
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+.safari-controls {
+    position: absolute;
+    left: 150px;
+
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.safari-controls button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 8px;
+
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.safari-controls button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.safari-address {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(420px, 45%);
+
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.16);
+
+    font-size: 12px;
+}
+
+.safari-address i {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.safari-content {
+    flex: 1;
+    min-height: 0;
+    background: white;
+}
+
+.safari-content iframe {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border: 0;
+    background: white;
+}
+
+/* Keep windows above the Dock but inside the usable desktop area */
+
+.mac-window {
+    max-height: calc(100vh - 190px);
+}
+
+.mac-window.maximized {
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: calc(100vh - 0px);
+
+    max-height: none;
+
+    border-radius: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 850px) {
+    .safari-window {
+        width: calc(100vw - 24px);
+        height: calc(100vh - 145px);
+    }
+
+    .safari-controls {
+        left: 125px;
+    }
+
+    .safari-address {
+        width: 35%;
+    }
+}
